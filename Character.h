@@ -16,6 +16,7 @@ class Character
 
 public:
 	Character(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic);
+	Character();
 	std::string getName();
 	int getHealth();
 	void minusHealth(int change);

@@ -11,12 +11,12 @@ class Enemy : public Character
 
 public:
 	Enemy(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int magicChance);
-	
+	Enemy();
 	int getMagicChance();
 	void minusMagicChance(int change);
 	void setMagicChance(int change);
 	bool doMagic();
-	int regainStamAuto();
+	int regainStamMagicAuto();
 };
 
 #endif PLAYER_H

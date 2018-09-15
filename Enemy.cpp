@@ -8,6 +8,7 @@
 Enemy::Enemy(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int magicChance)
 	: magicChance(magicChance), Character(name, health, stamina, magic, maxHealth, maxStamina, maxMagic) {}
 
+Enemy::Enemy() {}
 
 int Enemy::getMagicChance()
 {
@@ -39,12 +40,13 @@ bool Enemy::doMagic()
 	}
 }
 
-int Enemy::regainStamAuto()
+int Enemy::regainStamMagicAuto()
 {
 	std::random_device rd;
 	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr(0, getMaxStamina());
+	std::uniform_int_distribution<> distr(0, 6);
 	int regained = -(distr(eng));
 	minusStamina(regained);
+	minusMagic(regained);
 	return -regained;
 }

@@ -7,6 +7,8 @@
 Character::Character(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic)
 :name(name), health(health), stamina(stamina), magic(magic), maxHealth(maxHealth), maxStamina(maxStamina), maxMagic(maxMagic){}
 
+Character::Character() {}
+
 std::string Character::getName() 
 {
 	return name;
@@ -139,7 +141,7 @@ int Character::getMagicDamageTakeMagic()
 {
 	std::random_device rd;
 	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr(0, getMagic());
+	std::uniform_int_distribution<> distr(0, (getMagic()/2));
 	int dmg = distr(eng);
 	minusMagic(dmg);
 	std::random_device rd2;
@@ -147,5 +149,5 @@ int Character::getMagicDamageTakeMagic()
 	std::uniform_int_distribution<> distr2(1, 3);
 	int randomFactor = distr2(eng2);
 	// Returning random from (1,3) times the damage since magic does more damage, it's harder to recover than stamina because there's no rest button
-	return dmg * randomFactor;
+	return (dmg * randomFactor);
 }

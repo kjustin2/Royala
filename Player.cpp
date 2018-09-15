@@ -5,9 +5,10 @@
 #include <random>
 
 
-Player::Player(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int money, int healthPotion, int staminaPotion, int magicPotion)
-	: money(money), healthPotion(healthPotion), staminaPotion(staminaPotion), magicPotion(magicPotion), Character(name, health, stamina, magic, maxHealth, maxStamina, maxMagic){}
+Player::Player(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int money, int healthPotion, int staminaPotion, int magicPotion, int role)
+	: money(money), healthPotion(healthPotion), staminaPotion(staminaPotion), magicPotion(magicPotion), role(role), Character(name, health, stamina, magic, maxHealth, maxStamina, maxMagic){}
 
+Player::Player() {}
 
 int Player::getMoney()
 {
@@ -87,13 +88,45 @@ void Player::useMagicPotion()
 	minusMagic(-10);
 }
 
-int Player::regainStam()
+int Player::regainStamHealth()
 {
 	std::random_device rd;
 	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr(0, getMaxStamina());
+	std::uniform_int_distribution<> distr(0, 8);
 	int regained = -(distr(eng));
 	minusStamina(regained);
+	minusHealth(regained);
+	return -regained;
+}
+
+int Player::getRole()
+{
+	return role;
+}
+
+int Player::regainOther()
+{
+	std::random_device rd;
+	std::mt19937 eng(rd());
+	std::uniform_int_distribution<> distr2(0, 7);
+	std::uniform_int_distribution<> distr(0, 4);
+	int regained = 0;
+	minusStamina(regained);
+	if (role == 0) 
+	{
+		regained = -(distr(eng));
+		minusHealth(regained);
+	}
+	if (role == 1)
+	{
+		regained = -(distr2(eng));
+		minusStamina(regained);
+	}
+	if (role == 2)
+	{
+		regained = -(distr2(eng));
+		minusMagic(regained);
+	}
 	return -regained;
 }
 

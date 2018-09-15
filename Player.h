@@ -11,9 +11,11 @@ class Player: public Character
 	int healthPotion;
 	int staminaPotion;
 	int magicPotion;
+	int role;
 
 public:
-	Player(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int money, int healthPotion, int staminaPotion, int magicPotion);
+	Player(std::string name, int health, int stamina, int magic, int maxHealth, int maxStamina, int maxMagic, int money, int healthPotion, int staminaPotion, int magicPotion, int role);
+	Player();
 	int getMoney();
 	void minusMoney(int change);
 	void setMoney(int change);
@@ -29,8 +31,9 @@ public:
 	void useHealthPotion();
 	void useStaminaPotion();
 	void useMagicPotion();
-	int regainStam();
-
+	int regainStamHealth();
+	int getRole();
+	int regainOther();
 };
 
 #endif PLAYER_H
