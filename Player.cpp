@@ -92,7 +92,7 @@ int Player::regainStamHealth()
 {
 	std::random_device rd;
 	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr(0, 8);
+	std::uniform_int_distribution<> distr(0, 4);
 	int regained = -(distr(eng));
 	minusStamina(regained);
 	minusHealth(regained);
@@ -108,8 +108,8 @@ int Player::regainOther()
 {
 	std::random_device rd;
 	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr2(0, 7);
-	std::uniform_int_distribution<> distr(0, 4);
+	std::uniform_int_distribution<> distr2(0, 12);
+	std::uniform_int_distribution<> distr(0, 2);
 	int regained = 0;
 	minusStamina(regained);
 	if (role == 0) 
